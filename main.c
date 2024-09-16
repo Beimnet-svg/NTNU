@@ -1,26 +1,27 @@
+/*#include <avr/io.h>
 #include <avr/delay.h>
-#include <util/delay.h>
+#include <stdint.h>
+#include <stdio.h>
 
 #define F_CPU 4915200
 
 int main() {
   DDRA = 0xFF;
   DDRE = 0b10; 
-
   PORTE = 0b10; 
-  PORTA = 0b000001;
+  PORTA = 0b0000001;
 
+while(1)
+{
+  
+PORTA = 0b000000;
   _delay_ms(2000); 
 
-  PORTE = 0b00;
+PORTA = 0b000001;
 
   _delay_ms(2000);
 
-  PORTA = 0b01010101;
-
-  _delay_ms(2000);
-
-  PORTE = 0b10; 
+}
   return 0;
 
 }
@@ -43,3 +44,17 @@ int main() {
         scanf("%s",input_string);
         printf("\n\rYou entered: %s\n\r", input_string);
     }    */
+#include <avr/io.h>
+#include "uart.h"
+#include "sram.h"
+
+#define FOSC 4915200 // Clock Speed
+#define BAUD 9600
+#define MYUBRR FOSC/16/BAUD-1 // 31
+
+
+void main(void) {
+  uart_Init(MYUBRR); //Ikke noe nytt her. Samme som i lab1
+  SRAM_init(); //Kokt fra labforelesning
+  SRAM_test(); //Kokt fra oppgaveteksten
+}
