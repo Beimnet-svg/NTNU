@@ -1,0 +1,33 @@
+avr-gcc -O -std=c11 -mmcu=atmega162 -ggdb -c main.c -o build/main.o
+In file included from main.c:1:0:
+/usr/lib/avr/include/avr/delay.h:36:2: warning: #warning "This file has been moved to <util/delay.h>." [-Wcpp]
+ #warning "This file has been moved to <util/delay.h>."
+  ^
+In file included from /usr/lib/avr/include/avr/delay.h:37:0,
+                 from main.c:1:
+/usr/lib/avr/include/util/delay.h:92:3: warning: #warning "F_CPU not defined for <util/delay.h>" [-Wcpp]
+ # warning "F_CPU not defined for <util/delay.h>"
+   ^
+main.c:4:0: warning: "F_CPU" redefined
+ #define F_CPU 4915200
+ ^
+In file included from /usr/lib/avr/include/avr/delay.h:37:0,
+                 from main.c:1:
+/usr/lib/avr/include/util/delay.h:108:0: note: this is the location of the previous definition
+ # define F_CPU 1000000UL
+ ^
+main.c: In function ‘main’:
+main.c:7:3: error: ‘DDRA’ undeclared (first use in this function)
+   DDRA = 0xFF;
+   ^
+main.c:7:3: note: each undeclared identifier is reported only once for each function it appears in
+main.c:8:3: error: ‘DDRE’ undeclared (first use in this function)
+   DDRE = 0b10; 
+   ^
+main.c:10:3: error: ‘PORTE’ undeclared (first use in this function)
+   PORTE = 0b10; 
+   ^
+main.c:11:3: error: ‘PORTA’ undeclared (first use in this function)
+   PORTA = 0b000001;
+   ^
+make: *** [Makefile:28: build/main.o] Error 1
